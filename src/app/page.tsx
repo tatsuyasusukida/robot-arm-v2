@@ -17,14 +17,16 @@ const axisRadiansAtom = atom((get) =>
 
 export default function Home() {
   return (
-    <main>
-      <h1>Robot Arm V2</h1>
-      <form>
+    <main className="container mx-auto">
+      <h1 className="text-3xl mt-3 mb-3">Robot Arm V2</h1>
+      <form className="mb-3">
         {[...Array(5)].map((_, i) => (
-          <AxisDegreeSlider index={i} key={i}></AxisDegreeSlider>
+          <div className="mb-1" key={i}>
+            <AxisDegreeSlider index={i}></AxisDegreeSlider>
+          </div>
         ))}
       </form>
-      <Canvas style={{ width: "100vw", height: "100vh" }}>
+      <Canvas style={{ width: "50%", height: "50vh" }} className="border">
         <Scene></Scene>
       </Canvas>
     </main>
@@ -83,9 +85,9 @@ function Scene() {
         fov={75}
         near={0.1}
         far={1000}
-        position={[0, 5, 15]}
+        position={[0, 5, 10]}
       ></PerspectiveCamera>
-      <group rotation={[0, axisRadians[0], 0]}>
+      <group position={[0, 0, 0]} rotation={[0, axisRadians[0], 0]}>
         <Cylinder args={[1, 1, 2, 12]}>{material}</Cylinder>
         <Box position={[-0.5, 1.75, 0]} scale={[0.2, 1.5, 1]}>
           {material}
